@@ -17,8 +17,10 @@ import pickle
 import plotly.graph_objects as go
 import plotly.express as px
 from pathlib import Path
+import os
 
-BASE_PATH = Path(__file__).parent.parent
+# Get the absolute path to the project root (parent of streamlit_app)
+BASE_PATH = Path(__file__).resolve().parent.parent
 
 
 @st.cache_data
@@ -185,115 +187,128 @@ if page == " Home":
                 unsafe_allow_html=True)
 
     st.markdown("""
-    <div class="info-box">
-    <h3>Welcome to the Cancer Survival Prediction System</h3>
-    <p>This clinical decision support tool uses advanced machine learning to help healthcare professionals make informed decisions about cancer patient care.</p>
+    <div class="info-box" style="text-align: center;">
+    <h3>Clinical Decision Support Tool</h3>
+    <p>Advanced machine learning for cancer patient care and survival prediction</p>
     </div>
     """, unsafe_allow_html=True)
 
-    # Overview metrics
-    col1, col2, col3, col4 = st.columns(4)
+    st.markdown("<br>", unsafe_allow_html=True)
 
-    with col1:
-        st.metric("Dataset Size", "100,000", "patients")
-    with col2:
-        st.metric("Model Accuracy", "72.2%", "XGBoost")
-    with col3:
-        st.metric("Recall Rate", "43.5%", "+43.5% vs baseline")
-    with col4:
-        st.metric("Prediction Error", "±110 days", "survival time")
-
-    st.markdown("---")
-
-    # Features section
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.markdown("###  Key Features")
-        st.markdown("""
-        - **Survival Prediction**: Predict whether patient will survive >1 year
-        - **Time Estimation**: Estimate expected survival duration
-        - **Treatment Recommendations**: Get evidence-based treatment suggestions
-        - **Performance Analytics**: View model metrics and comparisons
-        """)
-
-        st.markdown("###  Model Performance")
-        st.markdown("""
-        **Classification Model (XGBoost):**
-        - Recall: 43.5% (catches 43-44 out of 100 survivors)
-        - Precision: 22.1%
-        - ROC-AUC: 67.4%
-        
-        **Regression Model (Linear Regression):**
-        - MAE: 109.9 days (~3.7 months)
-        - RMSE: 133.6 days
-        - R² Score: 0.084
-        """)
-
-    with col2:
-        st.markdown("###  Clinical Applications")
-        st.markdown("""
-        1. **Initial Patient Triage**
-           - Risk stratification
-           - Priority assignment
-           - Resource allocation
-        
-        2. **Treatment Planning**
-           - Duration estimation
-           - Resource requirements
-           - Care pathway selection
-        
-        3. **Treatment Selection**
-           - Evidence-based recommendations
-           - Stage-specific guidance
-           - Outcome expectations
-        
-        4. **Patient Counseling**
-           - Prognosis communication
-           - Expectation setting
-           - Informed decision-making
-        """)
-
-    st.markdown("---")
-
-    # How to use
-    st.markdown("###  How to Use")
+    # Navigation Cards
+    st.markdown("### Available Tools")
 
     col1, col2, col3 = st.columns(3)
 
     with col1:
         st.markdown("""
-        **1️⃣ Survival Predictor**
-        
-        Input patient demographics and clinical features to get:
-        - Survival probability
-        - Expected survival time
-        - Risk assessment
-        """)
+        <div style="background: linear-gradient(135deg, #2c5f7c 0%, #1e4158 100%); padding: 1.5rem; border-radius: 1rem; color: white; min-height: 280px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column;">
+            <h2 style="color: white; margin-top: 0; font-size: 1.5rem;">📊 Data Explorer</h2>
+            <p style="font-size: 0.95rem; margin: 0.8rem 0; line-height: 1.4;">
+            Explore dataset characteristics, class distributions, and treatment outcomes
+            </p>
+            <ul style="font-size: 0.85rem; margin: 0.8rem 0; padding-left: 1.2rem; line-height: 1.6;">
+                <li>Class distribution analysis</li>
+                <li>Treatment effectiveness by stage</li>
+                <li>Model performance visualizations</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
 
     with col2:
         st.markdown("""
-        **2️⃣ Treatment Recommender**
-        
-        Select cancer stage to receive:
-        - Best treatment option
-        - Survival statistics
-        - Evidence-based guidance
-        """)
+        <div style="background: linear-gradient(135deg, #3d6a8a 0%, #2c5066 100%); padding: 1.5rem; border-radius: 1rem; color: white; min-height: 280px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column;">
+            <h2 style="color: white; margin-top: 0; font-size: 1.5rem;">🩺 Survival Predictor</h2>
+            <p style="font-size: 0.95rem; margin: 0.8rem 0; line-height: 1.4;">
+            Predict patient survival probability and time estimation
+            </p>
+            <ul style="font-size: 0.85rem; margin: 0.8rem 0; padding-left: 1.2rem; line-height: 1.6;">
+                <li>1-year survival probability</li>
+                <li>Expected survival duration</li>
+                <li>Risk stratification</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
 
     with col3:
         st.markdown("""
-        **3️⃣ Model Performance**
-        
-        Explore model metrics including:
-        - Accuracy and recall
-        - Comparison charts
-        - Statistical analysis
-        """)
+        <div style="background: linear-gradient(135deg, #4a7894 0%, #356073 100%); padding: 1.5rem; border-radius: 1rem; color: white; min-height: 280px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column;">
+            <h2 style="color: white; margin-top: 0; font-size: 1.5rem;">🌍 Cancer Risk Predictor</h2>
+            <p style="font-size: 0.95rem; margin: 0.8rem 0; line-height: 1.4;">
+            Assess cancer risk based on environmental and lifestyle factors
+            </p>
+            <ul style="font-size: 0.85rem; margin: 0.8rem 0; padding-left: 1.2rem; line-height: 1.6;">
+                <li>Environmental risk assessment</li>
+                <li>Lifestyle factor analysis</li>
+                <li>Preventive recommendations</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
 
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    col4, col5, col6 = st.columns(3)
+
+    with col4:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #567a91 0%, #3f5b6f 100%); padding: 1.5rem; border-radius: 1rem; color: white; min-height: 280px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column;">
+            <h2 style="color: white; margin-top: 0; font-size: 1.5rem;">💊 Treatment Recommender</h2>
+            <p style="font-size: 0.95rem; margin: 0.8rem 0; line-height: 1.4;">
+            Evidence-based treatment recommendations by cancer stage
+            </p>
+            <ul style="font-size: 0.85rem; margin: 0.8rem 0; padding-left: 1.2rem; line-height: 1.6;">
+                <li>Stage-based recommendations</li>
+                <li>Personalized treatment plans</li>
+                <li>Survival rate comparisons</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col5:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #5f8499 0%, #47697c 100%); padding: 1.5rem; border-radius: 1rem; color: white; min-height: 280px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column;">
+            <h2 style="color: white; margin-top: 0; font-size: 1.5rem;">📈 Model Performance</h2>
+            <p style="font-size: 0.95rem; margin: 0.8rem 0; line-height: 1.4;">
+            Comprehensive metrics and model comparison dashboard
+            </p>
+            <ul style="font-size: 0.85rem; margin: 0.8rem 0; padding-left: 1.2rem; line-height: 1.6;">
+                <li>Model accuracy & recall</li>
+                <li>Performance comparisons</li>
+                <li>Technical details</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col6:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #e8f0f5 0%, #d1dfe8 100%); padding: 1.5rem; border-radius: 1rem; color: #2c3e50; min-height: 280px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 2px solid #3d6a8a; display: flex; flex-direction: column;">
+            <h2 style="color: #2c5f7c; margin-top: 0; font-size: 1.5rem;">ℹ️ Quick Stats</h2>
+            <p style="font-size: 0.95rem; margin: 0.8rem 0; color: #34495e; line-height: 1.4;">
+            Key system metrics at a glance
+            </p>
+            <ul style="font-size: 0.85rem; margin: 0.8rem 0; padding-left: 1.2rem; color: #34495e; line-height: 1.6;">
+                <li><strong>100,000</strong> patient records</li>
+                <li><strong>72.2%</strong> model accuracy</li>
+                <li><strong>43.5%</strong> recall rate</li>
+                <li><strong>±110 days</strong> prediction error</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    # Quick navigation instruction
+    st.markdown("""
+    <div style="text-align: center; padding: 1.5rem; background-color: #f8f9fa; border-radius: 0.5rem; margin: 2rem 0;">
+        <h4 style="margin-top: 0; color: #1f77b4;">👈 Use the sidebar to navigate between tools</h4>
+        <p style="margin-bottom: 0; color: #666;">Select any tool from the navigation menu to get started</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Clinical disclaimer
     st.markdown("""
     <div class="warning-box">
-    <strong> Clinical Disclaimer:</strong> This system is designed to support, not replace, clinical judgment. 
+    <strong>⚠️ Clinical Disclaimer:</strong> This system is designed to support, not replace, clinical judgment. 
     All predictions should be validated by qualified healthcare professionals and used in conjunction with 
     comprehensive patient assessment.
     </div>

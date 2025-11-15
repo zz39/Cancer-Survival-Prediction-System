@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+*.so
+*.log
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Environment
+.env
+.venv/
+
+# Data & Models
+*.pkl
+*.csv
+*.h5
+*.db
+
+# Streamlit
+.streamlit/
+
+# Results
+results/
+
+# Others
+*.bak
+*.tmp
+*.swp
