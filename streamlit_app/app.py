@@ -155,8 +155,8 @@ classifier, regressor, treatment_recs, risk_predictor, encoders, feature_names =
 st.sidebar.markdown("##  Navigation")
 page = st.sidebar.radio(
     "Select Page:",
-    [" Home", " Data Explorer", " Survival Predictor",
-        " Cancer Risk Predictor", " Treatment Recommender", " Model Performance"]
+    [" Home", " Survival Predictor",
+        " Cancer Risk Predictor", " Treatment Recommender", " Data Explorer", " Model Performance"]
 )
 
 st.sidebar.markdown("---")
@@ -202,21 +202,6 @@ if page == " Home":
 
     with col1:
         st.markdown("""
-        <div style="background: linear-gradient(135deg, #2c5f7c 0%, #1e4158 100%); padding: 1.5rem; border-radius: 1rem; color: white; min-height: 280px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column;">
-            <h2 style="color: white; margin-top: 0; font-size: 1.5rem;">📊 Data Explorer</h2>
-            <p style="font-size: 0.95rem; margin: 0.8rem 0; line-height: 1.4;">
-            Explore dataset characteristics, class distributions, and treatment outcomes
-            </p>
-            <ul style="font-size: 0.85rem; margin: 0.8rem 0; padding-left: 1.2rem; line-height: 1.6;">
-                <li>Class distribution analysis</li>
-                <li>Treatment effectiveness by stage</li>
-                <li>Model performance visualizations</li>
-            </ul>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col2:
-        st.markdown("""
         <div style="background: linear-gradient(135deg, #3d6a8a 0%, #2c5066 100%); padding: 1.5rem; border-radius: 1rem; color: white; min-height: 280px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column;">
             <h2 style="color: white; margin-top: 0; font-size: 1.5rem;">🩺 Survival Predictor</h2>
             <p style="font-size: 0.95rem; margin: 0.8rem 0; line-height: 1.4;">
@@ -230,7 +215,7 @@ if page == " Home":
         </div>
         """, unsafe_allow_html=True)
 
-    with col3:
+    with col2:
         st.markdown("""
         <div style="background: linear-gradient(135deg, #4a7894 0%, #356073 100%); padding: 1.5rem; border-radius: 1rem; color: white; min-height: 280px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column;">
             <h2 style="color: white; margin-top: 0; font-size: 1.5rem;">🌍 Cancer Risk Predictor</h2>
@@ -245,11 +230,7 @@ if page == " Home":
         </div>
         """, unsafe_allow_html=True)
 
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    col4, col5, col6 = st.columns(3)
-
-    with col4:
+    with col3:
         st.markdown("""
         <div style="background: linear-gradient(135deg, #567a91 0%, #3f5b6f 100%); padding: 1.5rem; border-radius: 1rem; color: white; min-height: 280px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column;">
             <h2 style="color: white; margin-top: 0; font-size: 1.5rem;">💊 Treatment Recommender</h2>
@@ -260,6 +241,25 @@ if page == " Home":
                 <li>Stage-based recommendations</li>
                 <li>Personalized treatment plans</li>
                 <li>Survival rate comparisons</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    col4, col5, col6 = st.columns(3)
+
+    with col4:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #2c5f7c 0%, #1e4158 100%); padding: 1.5rem; border-radius: 1rem; color: white; min-height: 280px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column;">
+            <h2 style="color: white; margin-top: 0; font-size: 1.5rem;">📊 Data Explorer</h2>
+            <p style="font-size: 0.95rem; margin: 0.8rem 0; line-height: 1.4;">
+            Explore dataset characteristics, class distributions, and treatment outcomes
+            </p>
+            <ul style="font-size: 0.85rem; margin: 0.8rem 0; padding-left: 1.2rem; line-height: 1.6;">
+                <li>Class distribution analysis</li>
+                <li>Treatment effectiveness by stage</li>
+                <li>Model performance visualizations</li>
             </ul>
         </div>
         """, unsafe_allow_html=True)
