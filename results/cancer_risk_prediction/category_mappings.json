@@ -1,0 +1,212 @@
+{
+  "Gender": {
+    "1": "Male",
+    "2": "Female"
+  },
+  "Air Pollution": {
+    "1": "Very Low",
+    "2": "Low",
+    "3": "Below Average",
+    "4": "Moderate",
+    "5": "Above Average",
+    "6": "High",
+    "7": "Very High",
+    "8": "Extreme"
+  },
+  "Alcohol use": {
+    "1": "Very Low",
+    "2": "Low",
+    "3": "Below Average",
+    "4": "Moderate",
+    "5": "Above Average",
+    "6": "High",
+    "7": "Very High",
+    "8": "Extreme"
+  },
+  "Dust Allergy": {
+    "1": "Very Low",
+    "2": "Low",
+    "3": "Below Average",
+    "4": "Moderate",
+    "5": "Above Average",
+    "6": "High",
+    "7": "Very High",
+    "8": "Extreme"
+  },
+  "OccuPational Hazards": {
+    "1": "Very Low",
+    "2": "Low",
+    "3": "Below Average",
+    "4": "Moderate",
+    "5": "Above Average",
+    "6": "High",
+    "7": "Very High",
+    "8": "Extreme"
+  },
+  "Genetic Risk": {
+    "1": "Very Low",
+    "2": "Low",
+    "3": "Below Average",
+    "4": "Average",
+    "5": "Above Average",
+    "6": "High",
+    "7": "Very High"
+  },
+  "chronic Lung Disease": {
+    "1": "None",
+    "2": "Very Mild",
+    "3": "Mild",
+    "4": "Moderate",
+    "5": "Moderately Severe",
+    "6": "Severe",
+    "7": "Very Severe"
+  },
+  "Balanced Diet": {
+    "1": "Minimal / Very Poor",
+    "2": "Very Low",
+    "3": "Low",
+    "4": "Moderate",
+    "5": "Moderately High",
+    "6": "High",
+    "7": "Very High"
+  },
+  "Obesity": {
+    "1": "Underweight",
+    "2": "Slightly Underweight",
+    "3": "Normal Weight",
+    "4": "Overweight",
+    "5": "Obese Class I",
+    "6": "Obese Class II",
+    "7": "Obese Class III"
+  },
+  "Smoking": {
+    "1": "Very Low",
+    "2": "Low",
+    "3": "Below Average",
+    "4": "Moderate",
+    "5": "Above Average",
+    "6": "High",
+    "7": "Very High",
+    "8": "Extreme"
+  },
+  "Passive Smoker": {
+    "1": "Very Low",
+    "2": "Low",
+    "3": "Below Average",
+    "4": "Moderate",
+    "5": "Above Average",
+    "6": "High",
+    "7": "Very High",
+    "8": "Extreme"
+  },
+  "Chest Pain": {
+    "1": "Very Low",
+    "2": "Low",
+    "3": "Below Average",
+    "4": "Moderate",
+    "5": "Above Average",
+    "6": "High",
+    "7": "Very High",
+    "8": "Extreme",
+    "9": "Critical"
+  },
+  "Coughing of Blood": {
+    "1": "Very Low",
+    "2": "Low",
+    "3": "Below Average",
+    "4": "Moderate",
+    "5": "Above Average",
+    "6": "High",
+    "7": "Very High",
+    "8": "Extreme",
+    "9": "Critical"
+  },
+  "Fatigue": {
+    "1": "None",
+    "2": "Very Mild",
+    "3": "Mild",
+    "4": "Moderate",
+    "5": "Moderately Severe",
+    "6": "Severe",
+    "8": "Extreme",
+    "9": "Debilitating"
+  },
+  "Weight Loss": {
+    "1": "Very Low",
+    "2": "Low",
+    "3": "Below Average",
+    "4": "Moderate",
+    "5": "Above Average",
+    "6": "High",
+    "7": "Very High",
+    "8": "Extreme"
+  },
+  "Shortness of Breath": {
+    "1": "None",
+    "2": "Very Mild",
+    "3": "Mild",
+    "4": "Moderate",
+    "5": "Moderately Severe",
+    "6": "Severe",
+    "7": "Very Severe",
+    "9": "Life Threatening"
+  },
+  "Wheezing": {
+    "1": "Very Low",
+    "2": "Low",
+    "3": "Below Average",
+    "4": "Moderate",
+    "5": "Above Average",
+    "6": "High",
+    "7": "Very High",
+    "8": "Extreme"
+  },
+  "Swallowing Difficulty": {
+    "1": "Very Low",
+    "2": "Low",
+    "3": "Below Average",
+    "4": "Moderate",
+    "5": "Above Average",
+    "6": "High",
+    "7": "Very High",
+    "8": "Extreme"
+  },
+  "Clubbing of Finger Nails": {
+    "1": "Very Low",
+    "2": "Low",
+    "3": "Below Average",
+    "4": "Moderate",
+    "5": "Above Average",
+    "6": "High",
+    "7": "Very High",
+    "8": "Extreme",
+    "9": "Critical"
+  },
+  "Frequent Cold": {
+    "1": "Never",
+    "2": "Rarely",
+    "3": "Occasionally",
+    "4": "Sometimes",
+    "5": "Often",
+    "6": "Very Often",
+    "7": "Always"
+  },
+  "Dry Cough": {
+    "1": "Never",
+    "2": "Rarely",
+    "3": "Occasionally",
+    "4": "Sometimes",
+    "5": "Often",
+    "6": "Very Often",
+    "7": "Always"
+  },
+  "Snoring": {
+    "1": "Never",
+    "2": "Rarely",
+    "3": "Occasionally",
+    "4": "Sometimes",
+    "5": "Often",
+    "6": "Very Often",
+    "7": "Always"
+  }
+}

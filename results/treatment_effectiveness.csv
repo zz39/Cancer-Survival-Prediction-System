@@ -1,0 +1,17 @@
+cancer_stage,treatment_type,total_patients,survivors,survival_rate,avg_survival_days,median_survival_days,std_survival_days,survival_rate_pct
+Stage I,Chemotherapy,6296,5675,0.901,512.739,514.0,128.23,90.1
+Stage I,Combined,6196,5565,0.898,510.413,513.0,128.214,89.8
+Stage I,Radiation,6295,5717,0.908,513.523,515.0,126.673,90.8
+Stage I,Surgery,6189,5602,0.905,511.681,511.0,126.569,90.5
+Stage II,Chemotherapy,6181,4984,0.806,477.441,477.0,138.299,80.6
+Stage II,Combined,6313,5074,0.804,475.054,476.0,137.208,80.4
+Stage II,Radiation,6133,4953,0.808,479.314,480.0,138.408,80.8
+Stage II,Surgery,6204,4996,0.805,476.585,474.5,138.061,80.5
+Stage III,Chemotherapy,6372,4487,0.704,442.872,446.0,138.764,70.4
+Stage III,Combined,6146,4315,0.702,440.14,440.0,139.212,70.2
+Stage III,Radiation,6385,4522,0.708,441.69,442.0,139.027,70.8
+Stage III,Surgery,6185,4331,0.7,439.203,437.0,141.051,70.0
+Stage IV,Chemotherapy,6351,3849,0.606,403.675,405.0,128.954,60.6
+Stage IV,Combined,6228,3776,0.606,404.703,405.0,126.846,60.6
+Stage IV,Radiation,6264,3828,0.611,406.406,408.0,127.76,61.1
+Stage IV,Surgery,6262,3711,0.593,401.369,402.0,129.172,59.3
