@@ -38,11 +38,5 @@ docker compose down
 └── src/          # training & analysis scripts
 ```
 
-## Recommended repository additions
-- `.env.example` for configurable settings
-- `scripts/run_dev.sh` to simplify local Docker startup
-- a small `/health` endpoint or healthcheck in `docker-compose.yml`
-- CI to build and test images (optional)
-
 ## Disclaimer
 This tool supports clinical decision-making and is not a substitute for professional judgment. Validate outputs before clinical use.
