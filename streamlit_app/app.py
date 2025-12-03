@@ -647,10 +647,21 @@ elif page == " Survival Predictor":
                     )
 
                 with col2:
+                    # Use risk stratification based on probability ranges
+                    if survival_prob >= 0.70:
+                        risk_level = "Low Risk"
+                        risk_color = "🟢"
+                    elif survival_prob >= 0.40:
+                        risk_level = "Moderate Risk"
+                        risk_color = "🟡"
+                    else:
+                        risk_level = "High Risk"
+                        risk_color = "🔴"
+
                     st.metric(
-                        "Predicted Outcome",
-                        "Will Survive" if survival_pred == 1 else "High Risk",
-                        delta="" if survival_pred == 1 else "!"
+                        "Risk Category",
+                        f"{risk_color} {risk_level}",
+                        delta=f"Based on {survival_prob*100:.1f}% survival chance"
                     )
 
                 with col3:
