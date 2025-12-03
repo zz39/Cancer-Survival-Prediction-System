@@ -647,10 +647,21 @@ elif page == " Survival Predictor":
                     )
 
                 with col2:
+                    # Use risk stratification based on probability ranges
+                    if survival_prob >= 0.70:
+                        risk_level = "Low Risk"
+                        risk_color = "🟢"
+                    elif survival_prob >= 0.40:
+                        risk_level = "Moderate Risk"
+                        risk_color = "🟡"
+                    else:
+                        risk_level = "High Risk"
+                        risk_color = "🔴"
+
                     st.metric(
-                        "Predicted Outcome",
-                        "Will Survive" if survival_pred == 1 else "High Risk",
-                        delta="" if survival_pred == 1 else "!"
+                        "Risk Category",
+                        f"{risk_color} {risk_level}",
+                        delta=f"Based on {survival_prob*100:.1f}% survival chance"
                     )
 
                 with col3:
@@ -1007,166 +1018,10 @@ elif page == " Treatment Recommender":
     </div>
     """, unsafe_allow_html=True)
 
-    # Create tabs for different recommendation types
-    tab1, tab2 = st.tabs([" Stage-Based Recommendations",
-                         " Personalized Recommendations"])
-
-    with tab1:
-        if treatment_recs is None:
-            st.error(" Treatment recommendations not loaded.")
-        else:
-            # Stage selection
-            st.markdown("###  Select Cancer Stage")
-
-            selected_stage = st.selectbox(
-                "Cancer Stage",
-                ["Stage I", "Stage II", "Stage III", "Stage IV"],
-                help="Select the patient's cancer stage to see treatment recommendations"
-            )
-
-            st.markdown("---")
-
-            if selected_stage in treatment_recs:
-                rec = treatment_recs[selected_stage]
-
-                # Display recommendation
-                st.markdown(f"###  Recommendation for {selected_stage}")
-
-                col1, col2 = st.columns([2, 1])
-
-                with col1:
-                    st.markdown(f"""
-                    <div class="success-box">
-                    <h3> Recommended Treatment: {rec['recommended_treatment']}</h3>
-                    <p><strong>Survival Rate:</strong> {rec['survival_rate']}</p>
-                    <p><strong>Average Survival:</strong> {rec['avg_survival_days']} days</p>
-                    <p><strong>Evidence Base:</strong> {rec['sample_size']} patients</p>
-                    <p><strong>Confidence Level:</strong> {rec['confidence']}</p>
-                    </div>
-                    """, unsafe_allow_html=True)
-
-                with col2:
-                    # Survival rate gauge
-                    survival_rate_num = float(rec['survival_rate'].rstrip('%'))
-                    fig = go.Figure(go.Indicator(
-                        mode="gauge+number",
-                        value=survival_rate_num,
-                        domain={'x': [0, 1], 'y': [0, 1]},
-                        title={'text': "Survival Rate"},
-                        gauge={
-                            'axis': {'range': [None, 100]},
-                            'bar': {'color': "darkgreen"},
-                            'steps': [
-                                {'range': [0, 60], 'color': "lightcoral"},
-                                {'range': [60, 80], 'color': "lightyellow"},
-                                {'range': [80, 100], 'color': "lightgreen"}
-                            ]
-                        }
-                    ))
-                    fig.update_layout(height=250)
-                    st.plotly_chart(fig, use_container_width=True)
-
-                # All treatments comparison
-                st.markdown("###  Treatment Comparison Table")
-
-                # Simulated data for all treatments
-                treatment_data = {
-                    'Stage I': {
-                        'Radiation': {'survival': 90.8, 'days': 514, 'patients': 6295},
-                        'Surgery': {'survival': 90.5, 'days': 512, 'patients': 6189},
-                        'Chemotherapy': {'survival': 90.1, 'days': 513, 'patients': 6296},
-                        'Combined': {'survival': 89.8, 'days': 510, 'patients': 6196}
-                    },
-                    'Stage II': {
-                        'Radiation': {'survival': 80.8, 'days': 479, 'patients': 6133},
-                        'Chemotherapy': {'survival': 80.6, 'days': 477, 'patients': 6181},
-                        'Surgery': {'survival': 80.5, 'days': 477, 'patients': 6204},
-                        'Combined': {'survival': 80.4, 'days': 475, 'patients': 6313}
-                    },
-                    'Stage III': {
-                        'Radiation': {'survival': 70.8, 'days': 442, 'patients': 6385},
-                        'Chemotherapy': {'survival': 70.4, 'days': 443, 'patients': 6372},
-                        'Combined': {'survival': 70.2, 'days': 440, 'patients': 6146},
-                        'Surgery': {'survival': 70.0, 'days': 439, 'patients': 6185}
-                    },
-                    'Stage IV': {
-                        'Radiation': {'survival': 61.1, 'days': 406, 'patients': 6264},
-                        'Chemotherapy': {'survival': 60.6, 'days': 404, 'patients': 6351},
-                        'Combined': {'survival': 60.6, 'days': 405, 'patients': 6228},
-                        'Surgery': {'survival': 59.3, 'days': 401, 'patients': 6262}
-                    }
-                }
-
-                if selected_stage in treatment_data:
-                    stage_treatments = treatment_data[selected_stage]
-
-                    comparison_df = pd.DataFrame([
-                        {
-                            'Treatment': treatment,
-                            'Survival Rate (%)': data['survival'],
-                            'Avg Survival (days)': data['days'],
-                            'Sample Size': data['patients'],
-                            'Recommended': '⭐' if treatment == rec['recommended_treatment'] else ''
-                        }
-                        for treatment, data in stage_treatments.items()
-                    ])
-
-                    comparison_df = comparison_df.sort_values(
-                        'Survival Rate (%)', ascending=False)
-                    st.dataframe(
-                        comparison_df, use_container_width=True, hide_index=True)
-
-                    # Visualization
-                    fig = px.bar(
-                        comparison_df,
-                        x='Treatment',
-                        y='Survival Rate (%)',
-                        color='Survival Rate (%)',
-                        color_continuous_scale='RdYlGn',
-                        title=f'Treatment Effectiveness Comparison - {selected_stage}'
-                    )
-                    fig.update_layout(showlegend=False, height=400)
-                    st.plotly_chart(fig, use_container_width=True)
-
-                # Clinical notes
-                st.markdown("###  Clinical Notes")
-
-                if selected_stage == "Stage I":
-                    st.info("""
-                    **Stage I - Early Stage Cancer:**
-                - All treatments show excellent effectiveness (>89% survival)
-                - Differences between treatments are NOT statistically significant
-                - Treatment selection can be based on patient-specific factors
-                - Consider patient age, comorbidities, and preferences
-                    """)
-                elif selected_stage == "Stage II":
-                    st.info("""
-                    **Stage II - Moderate Stage Cancer:**
-                - Good survival rates across all treatments (~80%)
-                - Radiation shows slight advantage but not statistically significant
-                - Consider combination therapies for high-risk features
-                - Regular monitoring essential
-                    """)
-                elif selected_stage == "Stage III":
-                    st.info("""
-                    **Stage III - Advanced Cancer:**
-                - Moderate survival rates (~70%)
-                - Surgery alone less effective than other options
-                - Consider Radiation or Chemotherapy as primary treatment
-                - Combination therapies may provide additional benefit
-                    """)
-                else:  # Stage IV
-                    st.warning("""
-                    **Stage IV - Most Advanced Cancer:**
-                - Lower survival rates (~60%)
-                - Radiation significantly better than Surgery (p=0.036)
-                - Avoid Surgery alone; prefer Radiation or Chemotherapy
-                - Palliative care considerations important
-                - Quality of life should be prioritized
-                    """)
+    # Only show Personalized Recommendations tab
+    tab2 = st.tabs([" Personalized Recommendations"])[0]
 
     with tab2:
-        # Personalized Treatment Recommendations (Single Model Approach)
         st.markdown("###  Personalized Treatment Recommendations")
         st.markdown("""
         <div class="info-box">

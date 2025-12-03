@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  cancer-survival-app:
+    build: .
+    ports:
+      - "8501:8501"  # Map host port 8501 to container port 8501
+    volumes:
+      - .:/app  # Mount the project directory for live code changes (optional for dev)
+    environment:
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+    restart: unless-stopped
